@@ -9,6 +9,12 @@ void main() {
     BlocProvider<GpsBloc>(
       create: (context) => GpsBloc(),
     ),
+    BlocProvider<LocationBloc>(
+      create: (context) => LocationBloc(),
+    ),
+    BlocProvider<MapBloc>(
+      create: (context) => MapBloc(),
+    ),
   ], child: const MapApp()));
 }
 
