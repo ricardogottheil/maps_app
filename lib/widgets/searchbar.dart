@@ -52,6 +52,7 @@ class _SearchBarBody extends StatelessWidget {
             );
             if (result == null) return;
 
+            // ignore: use_build_context_synchronously
             onSearchResult(context, result);
           },
           child: Container(
