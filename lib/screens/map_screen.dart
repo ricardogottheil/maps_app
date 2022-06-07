@@ -1,8 +1,8 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:maps_app/blocs/blocs.dart';
-import 'package:maps_app/widgets/btn_toggle_user_route.dart';
 
 import '../views/views.dart';
 import '../widgets/widgets.dart';
@@ -58,6 +58,8 @@ class _MapScreenState extends State<MapScreen> {
                       initialLocation: locationState.lastKnownLocation!,
                       polylines: polylines.values.toSet(),
                     ),
+                    const SearchBar(),
+                    const ManualMarket(),
                   ],
                 ),
               );
@@ -66,13 +68,16 @@ class _MapScreenState extends State<MapScreen> {
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: const [
-          BtnToggleUserRoute(),
-          BtnFollowUser(),
-          BtnCurrentLocation(),
-        ],
+      floatingActionButton: FadeInUp(
+        from: 200,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: const [
+            BtnToggleUserRoute(),
+            BtnFollowUser(),
+            BtnCurrentLocation(),
+          ],
+        ),
       ),
     );
   }
