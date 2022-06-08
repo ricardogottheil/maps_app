@@ -27,11 +27,21 @@ class SearchBar extends StatelessWidget {
 class _SearchBarBody extends StatelessWidget {
   const _SearchBarBody({Key? key}) : super(key: key);
 
-  void onSearchResult(BuildContext context, SearchResult result) {
+  void onSearchResult(BuildContext context, SearchResult result) async {
     final searchBloc = BlocProvider.of<SearchBloc>(context);
+    final mapBloc = BlocProvider.of<MapBloc>(context);
+    final locationBloc = BlocProvider.of<LocationBloc>(context);
 
     if (result.manual == true) {
       searchBloc.add(OnActivateManualMarkerEvent());
+      return;
+    }
+
+    if (result.position != null &&
+        locationBloc.state.lastKnownLocation != null) {
+      final destination = await searchBloc.getCoorsStartToEnd(
+          locationBloc.state.lastKnownLocation!, result.position!);
+      await mapBloc.drawRoutePolyline(destination);
       return;
     }
   }
