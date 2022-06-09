@@ -65,12 +65,12 @@ class Route {
   });
 
   bool countryCrossed;
-  double weightTypical;
-  double durationTypical;
+  double? weightTypical;
+  double? durationTypical;
   String weightName;
-  double weight;
-  double duration;
-  double distance;
+  double? weight;
+  double? duration;
+  double? distance;
   List<Leg> legs;
   String geometry;
 
